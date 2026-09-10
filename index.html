@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapporo Winter Journey - 삿포로 겨울 여행</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Pretendard:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --accent-color: #4299e1;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 2.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), 
+                              url('https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--white);
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Section Global */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Intro Section */
+        .intro {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        .intro-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .intro-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .intro-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .intro-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Destinations Grid */
+        .grid-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .card-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Food & Culture */
+        .features {
+            background-color: var(--white);
+            padding: 6rem 0;
+            margin-top: 4rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .feature-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        footer h2 {
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .grid-gallery { grid-template-columns: repeat(2, 1fr); }
+            .intro { flex-direction: column; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .grid-gallery { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo serif">Sapporo.</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#destinations">Destinations</a>
+                <a href="#cuisine">Cuisine</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>설국의 낭만, 삿포로</h1>
+            <p>발길 닿는 곳마다 그림이 되는 새하얀 겨울 왕국으로 당신을 초대합니다.</p>
+            <a href="#destinations" class="btn">여정 시작하기</a>
+        </div>
+    </section>
+
+    <section id="about" class="intro">
+        <div class="intro-text">
+            <h3>순백의 캔버스 위에 그려지는<br>당신의 겨울 이야기</h3>
+            <p>홋카이도의 심장, 삿포로는 매년 겨울이면 도시 전체가 푹신한 눈으로 뒤덮입니다. 코끝이 찡해지는 맑은 공기 속에서 빛나는 일루미네이션과 따뜻한 온천, 그리고 미식의 향연이 기다리고 있습니다.</p>
+            <p>복잡한 일상에서 벗어나 조용히 내리는 눈을 바라보며 온전한 휴식을 경험해 보세요.</p>
+        </div>
+        <div class="intro-image">
+            <img src="https://images.unsplash.com/photo-1549429598-a28c312763f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="삿포로 전경">
+        </div>
+    </section>
+
+    <section id="destinations">
+        <div class="section-header">
+            <h2>꼭 가봐야 할 겨울 명소</h2>
+            <p>삿포로와 근교에서 만나는 잊지 못할 풍경들</p>
+        </div>
+        
+        <div class="grid-gallery">
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1582260481198-d1cb76deceba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="오타루 운하">
+                </div>
+                <div class="card-content">
+                    <h3>오타루 운하</h3>
+                    <p>해 질 녘 가스등이 하나둘 켜지면 마법처럼 낭만적인 분위기가 펼쳐지는 작은 항구 도시입니다. 눈 내리는 운하 산책은 필수 코스입니다.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517457211116-c9569a19c5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="비에이 설원">
+                </div>
+                <div class="card-content">
+                    <h3>비에이 패치워크 로드</h3>
+                    <p>끝이 보이지 않는 광활한 순백의 설원 위에 홀로 서 있는 나무들. 윈도우 배경화면을 연상케 하는 감성적인 사진을 남겨보세요.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1605281317010-fe5ffe798166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="조잔케이 온천">
+                </div>
+                <div class="card-content">
+                    <h3>조잔케이 료칸 & 온천</h3>
+                    <p>얼어붙은 몸을 녹여주는 따뜻한 노천탕. 눈 내리는 풍경을 감상하며 즐기는 온천욕은 겨울 홋카이도 여행의 백미입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="features" id="cuisine">
+        <div class="section-header">
+            <h2>홋카이도 미식 여행</h2>
+            <p>신선한 식재료가 선사하는 미각의 즐거움</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="미소 라멘">
+                <div>
+                    <h3 class="serif">삿포로 미소 라멘</h3>
+                    <p>추운 겨울, 언 몸을 단번에 녹여주는 진하고 구수한 된장 베이스의 국물. 버터와 옥수수를 곁들여 먹는 것이 삿포로만의 특징입니다.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="카이센동">
+                <div>
+                    <h3 class="serif">해산물 덮밥 (카이센동)</h3>
+                    <p>홋카이도의 청정 바다에서 갓 잡아 올린 신선한 연어, 성게알, 게살이 듬뿍 올라간 덮밥은 바다의 풍미를 그대로 전해줍니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h2 class="serif">Winter in Sapporo</h2>
+        <p>당신의 겨울이 가장 따뜻한 기억으로 남기를 바랍니다.</p>
+        <p style="margin-top: 2rem;">&copy; 2026 Sapporo Winter Travel Guide. Designed for inspiration.</p>
+    </footer>
+
+</body>
+</html>
